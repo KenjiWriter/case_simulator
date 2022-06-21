@@ -33,10 +33,11 @@ class Open extends Component
                         $price = ($item['price'] * $float) / 2;
                         $add_item = [   // Create array to insert to DB
                             'id' => $item["id"], 
+                            'name' => $item["name"],
                             'float' => $float, 
                             'price' => $price
                         ];
-                        $newItem[] = $add_item;
+                        $newItem = $add_item;
                         $player_items = json_decode($user->items);
                         $player_items[] = $newItem;
                         $user->items = json_encode($player_items); // Encode items array to insert data to DB

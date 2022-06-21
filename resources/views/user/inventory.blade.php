@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Inventory') }}</div>
                     <div class="row m-3 mt-3">
-                        Your Items
+                        @livewire('user.inventory')
                     </div>
                 </div>
         </div>
