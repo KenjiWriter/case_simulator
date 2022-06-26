@@ -8,7 +8,7 @@
                     <p class="card-text text-center">{{ $item['price'] }}$</p>
                     <button class="btn btn-success" wire:click.prevent="sellItem({{ $k }})">SELL</button>
                 </div>
-            </div>
+        </div>
     </div>
     @endforeach
 </div>
