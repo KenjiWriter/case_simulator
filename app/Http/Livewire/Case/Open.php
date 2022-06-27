@@ -29,13 +29,10 @@ class Open extends Component
             $win = rand(1,100);
             foreach($winpull as $item) {
                 if($item['pull'] > $win) {
-                        $float = mt_rand(1, 50) / 10;
-                        $price = ($item['price'] * $float) / 2;
                         $add_item = [   // Create array to insert to DB
                             'id' => $item["id"], 
                             'name' => $item["name"],
-                            'float' => $float, 
-                            'price' => $price
+                            'price' => $item["price"]
                         ];
                         $newItem = $add_item;
                         $player_items = json_decode($user->items);
@@ -43,7 +40,7 @@ class Open extends Component
                         $user->items = json_encode($player_items); // Encode items array to insert data to DB
                         $user->money -= $this->price;
                     $user->save();
-                    $this->dropInfo = "You got {$item['name']} for {$price}$";
+                    $this->dropInfo = "You got {$item['name']} for {$item["price"]}$";
                     break;
                 }
             }
