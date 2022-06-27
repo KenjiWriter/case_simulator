@@ -35,12 +35,12 @@ class Open extends Component
                             'price' => $item["price"]
                         ];
                         $newItem = $add_item;
-                        $player_items = json_decode($user->items);
+                        $player_items = json_decode($user->items, true);
                         $player_items[] = $newItem;
                         $user->items = json_encode($player_items); // Encode items array to insert data to DB
                         $user->money -= $this->price;
                     $user->save();
-                    $this->dropInfo = "You got {$item['name']} for {$item["price"]}$";
+                    $this->dropInfo = "You got {$item['name']} for {$item['price']}$";
                     break;
                 }
             }
