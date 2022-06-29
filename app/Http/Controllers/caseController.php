@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Box;
 use App\Models\Item;
+use App\Models\recentItem;
 use Illuminate\Http\Request;
 
 class caseController extends Controller
@@ -16,8 +17,10 @@ class caseController extends Controller
     public function index()
     {
         $cases = Box::select('name','description', 'price','id')->get();
+        $recentItems = recentItem::limit(4)->orderBy('created_at', 'DESC')->get();
         return view('index', [
             'cases' => $cases,
+            'recentItems' => $recentItems
         ]);
     }
 

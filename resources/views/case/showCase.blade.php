@@ -12,7 +12,7 @@
                                     <div class="card-body">
                                         <p class="card-text">{{ $case->description }}</p>
                                         <p class="card-text text-center">{{ $case->price }}$</p>
-                                        @livewire('case.open', ['drops' => $drops, 'price' => $case->price])
+                                        @livewire('case.open', ['caseName' => $case->name ,'drops' => $drops, 'price' => $case->price])
                                     </div>
                                     <h3>DROP:</h3>
                                     <div class="row">

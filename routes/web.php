@@ -23,8 +23,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/case/{id}', [caseController::class, 'showCase'])->name('showcase');
 Route::get('/', [caseController::class, 'Index'])->name('index');
 Route::get('/inventory', [playerController::class, 'Inventory'])->name('inventory')->middleware('auth');

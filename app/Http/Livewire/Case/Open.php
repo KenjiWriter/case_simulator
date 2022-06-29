@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\Case;
 
-use App\Models\Box;
 use App\Models\User;
+use App\Models\recentItem;
 use Livewire\Component;
 
 class Open extends Component
 {
-    public $drops, $price, $message, $dropInfo = "";
+    public  $caseName, $drops, $price, $message, $dropInfo = "";
 
     public function openFunction()
     {
@@ -23,7 +23,8 @@ class Open extends Component
                     'pull' => $pull, 
                     'id' => $drop['item']['id'], 
                     'price' => $drop['item']['price'], 
-                    'name' => $drop['item']['name']
+                    'name' => $drop['item']['name'],
+                    'chances' => $drop['chances']
                 ];
             }
             $win = rand(1,100);
@@ -34,6 +35,13 @@ class Open extends Component
                             'name' => $item["name"],
                             'price' => $item["price"]
                         ];
+                        recentItem::create([
+                            'ItemName' => $item["name"],
+                            'ItemCase' => $this->caseName,
+                            'ItemPrice' => $item["price"],
+                            'ItemChances' => $item["chances"],
+                            'ItemOwner' => $user->name,
+                        ]);
                         $newItem = $add_item;
                         $player_items = json_decode($user->items, true);
                         $player_items[] = $newItem;
