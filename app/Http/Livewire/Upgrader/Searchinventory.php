@@ -45,8 +45,6 @@ class Searchinventory extends Component
             $user = User::find(auth()->user()->id);
             $items = $this->items;
             unset($items[$this->selectedKey]);
-            $user->items = json_encode($items);
-            $user->save();
             if($chances >= $win) {
                 $winItem = $this->selectedUpgradeItem;
                 $add_item = [   // Create array to insert to DB
@@ -54,13 +52,13 @@ class Searchinventory extends Component
                     'name' => $winItem["name"],
                     'price' => $winItem["price"]
                 ];
-                $this->items[] = $add_item;
-                $user->items = json_encode($this->items);
+                $items[] = $add_item;
                 $this->winItem = $this->selectedUpgradeItem;
                 $this->win = true;
             } else {
                 $this->win = false;
             }
+            $user->items = json_encode($items);
             $user->save();
             unset($this->selectedItem);
             unset($this->selectedUpgradeItem);
